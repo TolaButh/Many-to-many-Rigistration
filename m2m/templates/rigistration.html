@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block title %}{{title}}{% endblock  %}
+{% block content %}
+
+    <div class="container">
+            <h1 class="text-center text-primary">
+                {{title}}
+            </h1>
+            <hr>
+            <form action="{{rigistration}}" method="post">
+                <div>
+                    <label for="exampleInputEmail1" class="form-label text-primary">Student Name</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="std_name">
+                        <option selected>select student name</option>
+                       {% for student in students %}
+                       <option value="{{student.name}}">{{student.name}}</option>
+                       {% endfor %}
+                        
+                      </select>
+                </div>
+                <div>
+                    <label for="exampleInputEmail1" class="form-label text-primary">Class Name</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="class_name">
+                        <option selected>select class name</option>
+                        {% for class in classes %}
+                            <option value="{{class.name}}">{{class.name}}</option>
+                        {% endfor %}
+                      </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Rigistration</button>
+            </form>
+    </div>
+{% endblock  %}

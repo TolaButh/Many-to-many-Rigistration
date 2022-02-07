@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block title %}{{title}}{% endblock  %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center text-primary">
+        {{classe.name}}
+    </h1>
+    <hr>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center text-success">Student ID</th>
+                <th scope="col" class="text-center text-success">Student Name</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% if  students | length == 0   %}
+          
+           
+                <th class="text-center text-danger">No Data</th>
+                <th><th>
+       
+            {% else %}
+
+            {% for student in students %}
+            <tr>
+                <th scope="row" class="text-center text-primary">{{student.id}}</th>
+                <td class="text-center text-primary">{{student.name}}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+            
+        </tbody>
+       </table>
+</div>
+
+{% endblock  %}
+
+

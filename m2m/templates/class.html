@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+{% block title %}{{title}}{% endblock  %}
+{% block content %}
+    <div class="container">
+        <br>
+        <h2 class="text-center">{{title}}</h2>
+        <hr>
+      {% if classe %}
+      <div>
+        <form action="{{url_for("edit_class", id = classe.id)}}" method="POST">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control p-2" placeholder="Enter student name" name="name" value="{{classe.name}}">
+              <button type="submit" class="btn btn-success">Edit Class</button>
+            </div>
+          </form>
+       </div>
+      {% else %}
+      <div>
+        <form action="{{url_for("add_class")}}" method="POST">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control p-2" placeholder="Enter student name" name="name">
+              <button type="submit" class="btn btn-success">Add Class</button>
+            </div>
+          </form>
+       </div>
+
+      {% endif %}
+
+       <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col" class="text-center">Class Name</th>
+                <th scope="col" class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for class in classes %}
+            <tr>
+                <th scope="row">{{class.id}}</th>
+                <td class="text-center">{{class.name}}</td>
+                <td class="text-center">
+                    <a href="{{url_for("edit_class", id = class.id)}}" class="btn btn-outline-primary">Edit</a>
+                    <a href="{{url_for("detail_class", id=class.id)}}" class="btn btn-outline-success">Detail</a>
+                <td>
+            </tr>
+            {% endfor %}
+           
+        </tbody>
+       </table>
+    </div>
+
+{% endblock  %}
